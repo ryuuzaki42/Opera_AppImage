@@ -24,7 +24,9 @@ jobs:
 
     - name: WidevineCdm
       run: |
-       cd lib_extra/
+        set -x
+
+        cd lib_extra/
         mkdir tmp2/
         cd tmp2/
 
@@ -37,7 +39,41 @@ jobs:
         rm -R -f tmp*
         chmod a+x *.so
 
-    - name: build
+    - name: appimagetool
+      run: |
+        set -x
+
+        mkdir tmp/
+        cp -r lib_extra/ tmp/
+        cd tmp/
+
+        wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+        chmod +x appimagetool-x86_64.AppImage
+
+    - name: opera
+      run: |
+        set -x
+        cd tmp/
+
+        version_deb=$(wget -q https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/ -O - | grep deb | tail -1 | grep -o -P '(?<=.deb">).*(?=</a>)')
+        wget "https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/$version_deb"
+
+    - name: Make AppImage
+      run: |
+        set -x
+        cd tmp/
+
+        ar x *.deb
+        tar xf data.tar.xz
+        mkdir opera.AppDir
+        mv usr/lib/x86_64-linux-gnu/opera/* opera.AppDir/
+        mv usr/share/applications/*.desktop opera.AppDir/
+        sed -i -e '/TargetEnvironment/d' opera.AppDir/*.desktop
+        mv usr/share/pixmaps/* opera.AppDir/
+        tar xf control.tar.xz
+        VERSION=$(cat control | grep -i version | cut -c 10-)
+
+    - name: opera_builder
       run: |
         set -x
 
