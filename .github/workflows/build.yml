@@ -12,13 +12,9 @@ jobs:
 
     - name: build
       run: |
-        ./opera_builder.sh        
-        ls -lah
-        pwd
+        set -x
 
-        mkdir dist
-        mv *AppImage dist/
-
+        ./opera_builder.sh
         ls -lah
         pwd
 
