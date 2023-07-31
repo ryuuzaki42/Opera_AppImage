@@ -1,12 +1,5 @@
-name: Release Opera Appimage
-concurrency:
-  group: build-${{ github.ref }}
-  cancel-in-progress: true
-
-on:
-  schedule:
-    - cron: "0 20 * * 0-6"
-  workflow_dispatch:
+name: Create new realease
+on: [push]
 
 jobs:
   build:
@@ -16,15 +9,37 @@ jobs:
 
     - name: build
       run: |
-        sudo apt update
         sudo apt install libfuse2
+        
+        ls -lah
+        pwd
+
         wget https://raw.githubusercontent.com/ivan-hc/Opera-appimage/main/opera-builder.sh
         chmod a+x ./opera-builder.sh
         ./opera-builder.sh
         mkdir dist
         mv *AppImage dist/
+
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         name: Opera-Web-Browser-x86_64.AppImage
         path: 'dist'
+
+
+    # Build - Error: Resource not accessible by integration
+    # Change Settings -> Actions -> General -> Workflow Permissions to allow read and write:
+    # https://github.com/actions/first-interaction/issues/10#issuecomment-1506118886
+
+    # https://github.com/marketplace/actions/upload-to-github-release
+    - uses: xresloader/upload-to-github-release@main
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          file: "out/Authy*.AppImage; out/Authy*.md5"
+          #delete_file: "random-name-*.txt;random-*.txt"
+          release_id: ${{ steps.create_release.outputs.id }}
+          #overwrite: true
+          verbose: true
+          #tags: true
+          draft: false
