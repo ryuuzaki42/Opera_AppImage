@@ -7,16 +7,18 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: install fuse and libfuse2
+      run: sudo apt install fuse libfuse2
+
     - name: build
       run: |
-        sudo apt install libfuse2
-        
         ls -lah
         pwd
 
-        wget https://raw.githubusercontent.com/ivan-hc/Opera-appimage/main/opera-builder.sh
-        chmod a+x ./opera-builder.sh
-        ./opera-builder.sh
+        #wget https://raw.githubusercontent.com/ivan-hc/Opera-appimage/main/opera-builder.sh
+        #chmod +x ./opera-builder.sh
+
+        ./opera_builder.sh
         mkdir dist
         mv *AppImage dist/
 
