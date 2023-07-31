@@ -1,6 +1,6 @@
-#!/bin/sh
-
-# https://github.com/ivan-hc/Opera-appimage
+#!/bin/bash
+# Based on: https://github.com/ivan-hc/Opera-appimage
+#
 
 # DOWNLOAD EXTRA-LIBS
 mkdir lib_extra
