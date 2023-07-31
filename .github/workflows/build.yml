@@ -50,7 +50,7 @@ jobs:
         wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
 
-    - name: opera
+    - name: Opera
       run: |
         set -x
         cd tmp/
@@ -88,8 +88,10 @@ jobs:
 
         pwd
         ls -lah
-        cd ..
-        mv tmp/*AppImage Opera-"$VERSION"-x86_64.AppImage
+
+        mv Opera*AppImage ../Opera-"$VERSION"-x86_64-1_JB.AppImage
+        cd ../
+        md5sum Opera-"$VERSION"-x86_64-1_JB.AppImage > Opera-"$VERSION"-x86_64-1_JB.AppImage.md5
 
     # Build - Error: Resource not accessible by integration
     # Change Settings -> Actions -> General -> Workflow Permissions to allow read and write:
