@@ -4,27 +4,27 @@
 set -x
 
 # DOWNLOAD EXTRA-LIBS
-mkdir -p lib_extra/tmp/
-cd lib_extra/tmp/
+#mkdir -p lib_extra/tmp/
+#cd lib_extra/tmp/
 
-wget $(wget -q https://api.github.com/repos/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/latest -O - | grep browser_download_url | grep -i linux | grep -i 64 | cut -d '"' -f 4 | head -1)
-unzip *.zip
+#wget $(wget -q https://api.github.com/repos/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/latest -O - | grep browser_download_url | grep -i linux | grep -i 64 | cut -d '"' -f 4 | head -1)
+#unzip *.zip
 
-cd ../
-mv ./tmp/libffmpeg.so ./libffmpeg.so
+#cd ../
+#mv ./tmp/libffmpeg.so ./libffmpeg.so
 
-mkdir tmp2/
-cd tmp2/
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-ar x *.deb
-tar xf data.tar.xz
-cd ../
-mv tmp2/opt/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so libwidevinecdm.so
+#mkdir tmp2/
+#cd tmp2/
+#wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#ar x *.deb
+#tar xf data.tar.xz
+#cd ../
+#mv tmp2/opt/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so libwidevinecdm.so
 
-rm -R -f tmp*
-chmod a+x *.so
+#rm -R -f tmp*
+#chmod a+x *.so
 
-cd ../
+#cd ../
 
 # CREATE OPERA STABLE APPIMAGE
 mkdir tmp/
