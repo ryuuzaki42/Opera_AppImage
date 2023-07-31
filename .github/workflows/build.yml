@@ -72,14 +72,24 @@ jobs:
         mv usr/share/pixmaps/* opera.AppDir/
         tar xf control.tar.xz
         VERSION=$(cat control | grep -i version | cut -c 10-)
+        
+        cat >> opera.AppDir/AppRun << 'EOF'
+        #!/bin/bash
+        HERE="$(dirname "$(readlink -f "${0}")")"
+        export UNION_PRELOAD="${HERE}"
+        export LD_LIBRARY_PATH=/lib/:/lib64/:/lib/x86_64-linux-gnu/:/usr/lib/:"${HERE}"/lib_extra/:LD_LIBRARY_PATH
+        exec "${HERE}"/opera "$@"
+        EOF
 
-    - name: opera_builder
-      run: |
-        set -x
+        chmod +x opera.AppDir/AppRun
+        mv lib_extra opera.AppDir/
 
-        ./opera_builder.sh
-        ls -lah
+        ARCH=x86_64 ./appimagetool-x86_64.AppImage -n opera.AppDir/
+
         pwd
+        ls -lah
+        cd ..
+        mv tmp/*AppImage Opera-"$VERSION"-x86_64.AppImage
 
     # Build - Error: Resource not accessible by integration
     # Change Settings -> Actions -> General -> Workflow Permissions to allow read and write:
