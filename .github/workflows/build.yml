@@ -16,8 +16,7 @@ jobs:
         mkdir -p lib_extra/tmp/
         cd lib_extra/tmp/
 
-        #wget $(wget -q https://api.github.com/repos/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/latest -O - | grep browser_download_url | grep -i linux | grep -i 64 | cut -d '"' -f 4 | head -1)
-        wget -q --show-progress "https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$nwjs_version/$nwjs_version-linux-x64.zip"
+        wget -q "https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$nwjs_version/$nwjs_version-linux-x64.zip"
         unzip "$nwjs_version-linux-x64.zip"
         pwd; ls -lah
 
@@ -32,7 +31,7 @@ jobs:
         cd lib_extra/
         mkdir tmp2/
         cd tmp2/
-        wget -q --show-progress https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         pwd; ls -lah
 
         ar xv google-chrome-stable_current_amd64.deb
@@ -53,7 +52,7 @@ jobs:
         cd tmp/
         pwd; ls -lah
 
-        wget -q --show-progress https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+        wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
         pwd; ls -lah
 
@@ -64,17 +63,16 @@ jobs:
         echo "opera_version: $opera_version"
         cd tmp/
 
-        #version_deb=$(wget -q https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/ -O - | grep deb | tail -1 | grep -o -P '(?<=.deb">).*(?=</a>)')
-        #wget "https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/$version_deb"
-        wget -q --show-progress "https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/opera-stable_${opera_version}_amd64.deb"
+        wget -q "https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/opera-stable_${opera_version}_amd64.deb"
         pwd; ls -lah
+
+        ar xv *.deb
+        tar xfv data.tar.xz
 
     - name: Make AppImage
       run: |
         set -x
         cd tmp/
-        ar x *.deb
-        tar xf data.tar.xz
 
         mkdir opera.AppDir/
         mv ../README.md opera.AppDir/
@@ -87,10 +85,6 @@ jobs:
         mv usr/share/applications/opera.desktop opera.AppDir/
         sed -i -e '/TargetEnvironment/d' opera.AppDir/*.desktop
 
-        #tar xf control.tar.xz
-        #opera_version=$(grep -i "version" control | cut -c 10-)
-        opera_version=$(grep -o "Opera:.*" README.md | cut -d ' ' -f2)
-
         cat >> opera.AppDir/AppRun << 'EOF'
         #!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
@@ -102,10 +96,10 @@ jobs:
         EOF
 
         chmod +x opera.AppDir/AppRun
-
-        ARCH=x86_64 ./appimagetool-x86_64.AppImage -n opera.AppDir/
+        ARCH=x86_64 ./appimagetool-x86_64.AppImage opera.AppDir/
         pwd; ls -lah
 
+        opera_version=$(grep -o "Opera:.*" README.md | cut -d ' ' -f2)
         mv Opera*AppImage ../Opera-"$opera_version"-x86_64-1_JB.AppImage
         cd ../
         md5sum Opera-"$opera_version"-x86_64-1_JB.AppImage > Opera-"$opera_version"-x86_64-1_JB.AppImage.md5
