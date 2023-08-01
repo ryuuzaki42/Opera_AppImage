@@ -83,22 +83,26 @@ jobs:
         cd tmp/
         ar x *.deb
         tar xf data.tar.xz
+
         mkdir opera.AppDir/
+        mv usr/lib/x86_64-linux-gnu/opera/ opera.AppDir/
+        mv usr/share/icons/hicolor/256x256/apps/opera.png opera.AppDir/
+        mv usr/share/doc/ opera.AppDir/
 
-        mv usr/lib/x86_64-linux-gnu/opera/* opera.AppDir/
-        mv usr/share/applications/*.desktop opera.AppDir/
-
+        mv usr/share/applications/opera.desktop opera.AppDir/
         sed -i -e '/TargetEnvironment/d' opera.AppDir/*.desktop
-        mv usr/share/pixmaps/* opera.AppDir/
 
-        tar xf control.tar.xz
-        VERSION=$(grep -i "version" control | cut -c 10-)
+        #tar xf control.tar.xz
+        #opera_version=$(grep -i "version" control | cut -c 10-)
+        opera_version=$(grep -o "Opera:.*" README.md | cut -d ' ' -f2)
 
         cat >> opera.AppDir/AppRun << 'EOF'
         #!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
+
         export UNION_PRELOAD="${HERE}"
         export LD_LIBRARY_PATH=/lib/:/lib64/:/lib/x86_64-linux-gnu/:/usr/lib/:"${HERE}"/lib_extra/:LD_LIBRARY_PATH
+
         exec "${HERE}"/opera "$@"
         EOF
 
@@ -110,9 +114,9 @@ jobs:
         pwd
         ls -lah
 
-        mv Opera*AppImage ../Opera-"$VERSION"-x86_64-1_JB.AppImage
+        mv Opera*AppImage ../Opera-"$opera_version"-x86_64-1_JB.AppImage
         cd ../
-        md5sum Opera-"$VERSION"-x86_64-1_JB.AppImage > Opera-"$VERSION"-x86_64-1_JB.AppImage.md5
+        md5sum Opera-"$opera_version"-x86_64-1_JB.AppImage > Opera-"$opera_version"-x86_64-1_JB.AppImage.md5
 
     - uses: xresloader/upload-to-github-release@main
       env:
