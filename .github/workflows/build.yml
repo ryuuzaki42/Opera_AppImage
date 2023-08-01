@@ -78,7 +78,7 @@ jobs:
         mv ../README.md opera.AppDir/
         mv lib_extra opera.AppDir/
 
-        mv usr/lib/x86_64-linux-gnu/opera/ opera.AppDir/
+        mv usr/lib/x86_64-linux-gnu/opera/* opera.AppDir/
         mv usr/share/icons/hicolor/256x256/apps/opera.png opera.AppDir/
         mv usr/share/doc/ opera.AppDir/
 
@@ -92,7 +92,7 @@ jobs:
         export UNION_PRELOAD="${HERE}"
         export LD_LIBRARY_PATH=/lib/:/lib64/:/lib/x86_64-linux-gnu/:/usr/lib/:"${HERE}"/lib_extra/:LD_LIBRARY_PATH
 
-        exec "${HERE}"/opera/opera "$@"
+        exec "${HERE}"/opera "$@"
         EOF
 
         chmod +x opera.AppDir/AppRun
