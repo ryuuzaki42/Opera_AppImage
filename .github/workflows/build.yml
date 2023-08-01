@@ -92,7 +92,7 @@ jobs:
         export UNION_PRELOAD="${HERE}"
         export LD_LIBRARY_PATH=/lib/:/lib64/:/lib/x86_64-linux-gnu/:/usr/lib/:"${HERE}"/lib_extra/:LD_LIBRARY_PATH
 
-        exec "${HERE}"/opera "$@"
+        exec "${HERE}"/opera/opera "$@"
         EOF
 
         chmod +x opera.AppDir/AppRun
