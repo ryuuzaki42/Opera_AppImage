@@ -6,7 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-
     - name: Install fuse and libfuse2
       run: sudo apt install fuse libfuse2
 
@@ -21,13 +20,14 @@ jobs:
 
         #wget $(wget -q https://api.github.com/repos/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/latest -O - | grep browser_download_url | grep -i linux | grep -i 64 | cut -d '"' -f 4 | head -1)
         wget "https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$nwjs_version/$nwjs_version-linux-x64.zip"
-        unzip "$nwjs_version-linux-x64.zip.zip"
+        unzip "$nwjs_version-linux-x64.zip"
 
         pwd
         ls -lah
 
         cd ../
         mv ./tmp/libffmpeg.so ./libffmpeg.so
+        rm -r tmp2/
 
         pwd
         ls -lah
@@ -40,7 +40,6 @@ jobs:
         cd tmp2/
 
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
         pwd
         ls -lah
  
@@ -52,8 +51,8 @@ jobs:
         pwd
         ls -lah
 
-        rm -r tmp*/
-        chmod +x *.so
+        rm -r tmp2/
+        chmod +x libwidevinecdm.so libffmpeg.so
 
         pwd
         ls -lah
@@ -61,10 +60,11 @@ jobs:
     - name: appimagetool
       run: |
         set -x
-
         mkdir tmp/
         mv lib_extra/ tmp/
         cd tmp/
+        pwd
+        ls -lah
 
         wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
@@ -77,13 +77,11 @@ jobs:
         set -x
         opera_version=$(grep -o "Opera:.*" README.md | cut -d ' ' -f2)
         echo "opera_version: $opera_version"
-
         cd tmp/
 
         #version_deb=$(wget -q https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/ -O - | grep deb | tail -1 | grep -o -P '(?<=.deb">).*(?=</a>)')
         #wget "https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/$version_deb"
         wget "https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/opera-stable_${opera_version}_amd64.deb"
-
         pwd
         ls -lah
 
@@ -103,7 +101,7 @@ jobs:
         mv usr/share/pixmaps/* opera.AppDir/
 
         tar xf control.tar.xz
-        VERSION=$(cat control | grep -i version | cut -c 10-)
+        VERSION=$(grep -i "version" control | cut -c 10-)
 
         cat >> opera.AppDir/AppRun << 'EOF'
         #!/bin/bash
@@ -118,7 +116,6 @@ jobs:
         mv ../README.md opera.AppDir/
 
         ARCH=x86_64 ./appimagetool-x86_64.AppImage -n opera.AppDir/
-
         pwd
         ls -lah
 
