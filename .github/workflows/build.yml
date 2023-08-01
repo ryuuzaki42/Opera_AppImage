@@ -13,7 +13,7 @@ jobs:
     - name: nwjs-ffmpeg-prebuilt
       run: |
         set -x
-        nwjs_version=$(cat README.md | grep "nwjs-ffmpeg-prebuilt:" | cut -d ' ' -f2)
+        nwjs_version=$(grep -o "nwjs-ffmpeg-prebuilt:.*" README.md | cut -d ' ' -f2)
         echo "nwjs_version: $nwjs_version"
 
         mkdir -p lib_extra/tmp/
@@ -75,7 +75,7 @@ jobs:
     - name: Opera
       run: |
         set -x
-        opera_version=$(cat README.md | grep "Opera:" | cut -d ' ' -f2)
+        opera_version=$(grep -o "Opera:.*" README.md | cut -d ' ' -f2)
         echo "opera_version: $opera_version"
 
         cd tmp/
