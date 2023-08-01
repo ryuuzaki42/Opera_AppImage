@@ -10,14 +10,22 @@ jobs:
     - name: Install fuse and libfuse2
       run: sudo apt install fuse libfuse2
 
+    - name: Version
+      run: |
+        echo "0.78.1" > nwjs_version.txt
+        echo "101.0.4843.25" > opera_version.txt
+
     - name: nwjs-ffmpeg-prebuilt
       run: |
         set -x
+        nwjs_version=$(cat nwjs_version.txt)
+
         mkdir -p lib_extra/tmp/
         cd lib_extra/tmp/
 
-        wget $(wget -q https://api.github.com/repos/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/latest -O - | grep browser_download_url | grep -i linux | grep -i 64 | cut -d '"' -f 4 | head -1)
-        unzip *.zip
+        #wget $(wget -q https://api.github.com/repos/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/latest -O - | grep browser_download_url | grep -i linux | grep -i 64 | cut -d '"' -f 4 | head -1)
+        wget "https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$nwjs_version/$nwjs_version-linux-x64.zip"
+        unzip "$nwjs_version-linux-x64.zip.zip"
 
         pwd
         ls -lah
@@ -57,11 +65,13 @@ jobs:
     - name: appimagetool
       run: |
         set -x
+        opera_version=$(cat opera_version.txt)
+
         mkdir tmp/
         mv lib_extra/ tmp/
         cd tmp/
 
-        wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+        #wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
 
         pwd
@@ -70,6 +80,7 @@ jobs:
     - name: Opera
       run: |
         set -x
+        opera_version=$(cat opera_version)
         cd tmp/
 
         version_deb=$(wget -q https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/ -O - | grep deb | tail -1 | grep -o -P '(?<=.deb">).*(?=</a>)')
