@@ -27,7 +27,7 @@ jobs:
 
         cd ../
         mv ./tmp/libffmpeg.so ./libffmpeg.so
-        rm -r tmp2/
+        rm -r tmp/
 
         pwd
         ls -lah
