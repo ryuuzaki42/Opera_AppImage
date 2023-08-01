@@ -13,22 +13,18 @@ jobs:
       run: |
         set -x
         nwjs_version=$(grep -o "nwjs-ffmpeg-prebuilt:.*" README.md | cut -d ' ' -f2)
-        echo "nwjs_version: $nwjs_version"
-
         mkdir -p lib_extra/tmp/
         cd lib_extra/tmp/
 
         #wget $(wget -q https://api.github.com/repos/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/latest -O - | grep browser_download_url | grep -i linux | grep -i 64 | cut -d '"' -f 4 | head -1)
         wget "https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$nwjs_version/$nwjs_version-linux-x64.zip"
         unzip "$nwjs_version-linux-x64.zip"
-
         pwd
         ls -lah
 
+        mv libffmpeg.so ../
         cd ../
-        mv ./tmp/libffmpeg.so ./libffmpeg.so
         rm -r tmp/
-
         pwd
         ls -lah
 
@@ -38,22 +34,19 @@ jobs:
         cd lib_extra/
         mkdir tmp2/
         cd tmp2/
-
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         pwd
         ls -lah
  
-        ar x *.deb
-        tar xf data.tar.xz
+        ar xv google-chrome-stable_current_amd64.deb
+        tar xfv data.tar.xz
+        mv opt/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so ../
         cd ../
-        mv tmp2/opt/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so libwidevinecdm.so
-
         pwd
         ls -lah
 
         rm -r tmp2/
         chmod +x libwidevinecdm.so libffmpeg.so
-
         pwd
         ls -lah
 
@@ -68,7 +61,6 @@ jobs:
 
         wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
-
         pwd
         ls -lah
 
@@ -89,7 +81,6 @@ jobs:
       run: |
         set -x
         cd tmp/
-
         ar x *.deb
         tar xf data.tar.xz
         mkdir opera.AppDir/
