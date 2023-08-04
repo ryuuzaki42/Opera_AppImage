@@ -20,3 +20,6 @@ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 https://www.opera.com/
 
 https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/
+
+---
+Based on: https://github.com/ivan-hc/Opera-appimage
