@@ -1,24 +1,23 @@
 # Opera_AppImage
+https://www.opera.com/
 
 ## Repository: https://github.com/ryuuzaki42/Opera_AppImage
 
 ### Opera + nwjs-ffmpeg-prebuilt + WidevineCdm
-
     nwjs-ffmpeg-prebuilt: 0.78.1
 
-    Opera: 101.0.4843.25
+    Opera: 101.0.4843.33
 
 ---
-https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt
-
+### nwjs-ffmpeg-prebuilt
 https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases
 
 ---
+### Widevinecdm
 https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 ---
-https://www.opera.com/
-
+### Opera
 https://deb.opera.com/opera-stable/pool/non-free/o/opera-stable/
 
 ---
