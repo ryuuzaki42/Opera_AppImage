@@ -6,7 +6,7 @@ https://www.opera.com/
 ### Opera + nwjs-ffmpeg-prebuilt + WidevineCdm
     nwjs-ffmpeg-prebuilt: 0.78.1
 
-    Opera: 101.0.4843.33
+    Opera: 101.0.4843.58
 
 ---
 ### nwjs-ffmpeg-prebuilt
