@@ -116,6 +116,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           file: "Opera*.AppImage; Opera*.md5"
+          #delete_file: "random-name-*.txt;random-*.txt"
           release_id: ${{ steps.create_release.outputs.id }}
+          #overwrite: true
           verbose: true
+          #tags: true
           draft: false
+          default_release_name: "Opera: V + nwjs-ffmpeg-prebuilt: V + Widevinecdm"
