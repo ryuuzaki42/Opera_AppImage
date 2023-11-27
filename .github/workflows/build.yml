@@ -122,4 +122,4 @@ jobs:
           verbose: true
           #tags: true
           draft: false
-          default_release_name: "Opera V + nwjs-ffmpeg-prebuilt V + Widevinecdm"
+          default_release_name: "Opera V + nwjs-ffmpeg-prebuilt V + Widevinecdm in AppImage"
