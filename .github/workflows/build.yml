@@ -107,7 +107,7 @@ jobs:
         pwd; ls -lah
 
         opera_version=$(grep -o "Opera:.*" opera.AppDir/README.md | cut -d ' ' -f2)
-        mv Opera-x86_64.AppImage ../Opera-"$opera_version"-x86_64-1_JB.AppImage
+        mv Opera*-x86_64.AppImage ../Opera-"$opera_version"-x86_64-1_JB.AppImage
         cd ../
         md5sum Opera-"$opera_version"-x86_64-1_JB.AppImage > Opera-"$opera_version"-x86_64-1_JB.AppImage.md5
         pwd; ls -lah
