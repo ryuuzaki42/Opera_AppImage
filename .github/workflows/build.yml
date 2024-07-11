@@ -59,7 +59,7 @@ jobs:
         pwd; ls -lah
 
         #wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-        wget -q https://github.com/probonopd/go-appimage/releases/download/continuous/appimagetool-833-x86_64.AppImage -O appimagetool-x86_64.AppImage
+        wget -q https://github.com/probonopd/go-appimage/releases/download/continuous/appimagetool-840-x86_64.AppImage -O appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
         pwd; ls -lah
 
@@ -103,20 +103,24 @@ jobs:
         EOF
 
         chmod +x opera.AppDir/AppRun
-        ARCH=x86_64 VERSION=$(grep -o "Opera:.*" opera.AppDir/README.md | cut -d ' ' -f2) ./appimagetool-x86_64.AppImage opera.AppDir/
-        pwd; ls -lah
 
         opera_version=$(grep -o "Opera:.*" opera.AppDir/README.md | cut -d ' ' -f2)
-        mv Opera*-x86_64.AppImage ../Opera-"$opera_version"-x86_64-1_JB.AppImage
+        ARCH=x86_64 VERSION="${opera_version}-1_JB" ./appimagetool-x86_64.AppImage opera.AppDir/
+        pwd; ls -lah
+
+        mv Opera*.AppImage Opera*.zsync ../
         cd ../
-        md5sum Opera-"$opera_version"-x86_64-1_JB.AppImage > Opera-"$opera_version"-x86_64-1_JB.AppImage.md5
+
+        fileName=$(ls Opera*.AppImage)
+        echo "fileName: $fileName"
+        md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
 
     - uses: xresloader/upload-to-github-release@main
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: "Opera*.AppImage; Opera*.md5"
+          file: "Opera*.AppImage; Opera*.zsync; Opera*.md5"
           #delete_file: "random-name-*.txt;random-*.txt"
           release_id: ${{ steps.create_release.outputs.id }}
           #overwrite: true
