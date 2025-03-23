@@ -29,13 +29,13 @@ jobs:
 
         mv libffmpeg.so ../
         cd ../
-        #rm -r tmp/
+        rm -r tmp/
         pwd; ls -lah
 
     - name: WidevineCdm from chrome
       run: |
         set -x
-        #mkdir tmp/
+        mkdir tmp/
         cd tmp/
         wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         pwd; ls -lah
@@ -46,17 +46,15 @@ jobs:
         cd ../
         pwd; ls -lah
 
-        #rm -r tmp/
+        rm -r tmp/
         chmod +x libwidevinecdm.so libffmpeg.so
         pwd; ls -lah
 
     - name: appimagetool
       run: |
         set -x
-        pwd; ls -lah
-        #mkdir tmp/
+        mkdir tmp/
         cd tmp/
-        pwd; ls -lah
 
         #wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         version_go_appimage=$(wget -q -O - https://api.github.com/repos/probonopd/go-appimage/releases | grep "\"name.*appimagetool-.*-x86_64.AppImage\"" | head -n 1 | cut -d '-' -f2)
