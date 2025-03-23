@@ -81,6 +81,7 @@ jobs:
 
         ar xv *.deb
         tar xfv data.tar.xz
+        pwd; ls -lah
 
     - name: Make AppImage
       run: |
