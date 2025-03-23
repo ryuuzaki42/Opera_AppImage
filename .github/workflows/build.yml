@@ -19,8 +19,11 @@ jobs:
       run: |
         set -x
         nwjs_version=$(grep -o "nwjs-ffmpeg-prebuilt:.*" README.md | cut -d ' ' -f2)
-        mkdir -p lib_extra/tmp/
-        cd lib_extra/tmp/
+        #mkdir -p lib_extra/tmp/
+        #cd lib_extra/tmp/
+
+        mkdir tmp/
+        cd tmp/
 
         wget -q "https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$nwjs_version/$nwjs_version-linux-x64.zip"
         unzip "$nwjs_version-linux-x64.zip"
@@ -34,7 +37,7 @@ jobs:
     - name: WidevineCdm from chrome
       run: |
         set -x
-        cd lib_extra/
+        #cd lib_extra/
         mkdir tmp2/
         cd tmp2/
         wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
