@@ -58,7 +58,7 @@ jobs:
         set -x
         pwd; ls -lah
         mkdir tmp/
-        mv lib_extra/ tmp/
+        #mv lib_extra/ tmp/
         cd tmp/
         pwd; ls -lah
 
@@ -89,7 +89,13 @@ jobs:
 
         mkdir opera.AppDir/
         mv ../README.md opera.AppDir/
-        mv lib_extra opera.AppDir/
+        
+        #mv lib_extra opera.AppDir/
+        mv libffmpeg.so libffmpeg.so.old
+
+        cp ../libwidevinecdm.so .
+	      cp ../libffmpeg.so .
+        pwd; ls -lah
 
         mv usr/lib/x86_64-linux-gnu/opera/* opera.AppDir/
         mv usr/share/icons/hicolor/256x256/apps/opera.png opera.AppDir/
