@@ -90,17 +90,17 @@ jobs:
 
         mkdir opera.AppDir/
         mv ../README.md opera.AppDir/
-        
-        #mv lib_extra opera.AppDir/
-        #mv libffmpeg.so libffmpeg.so.old
-
-        cp ../libwidevinecdm.so opera.AppDir/
-        cp ../libffmpeg.so opera.AppDir/
-        pwd; ls -lah
 
         mv usr/lib/x86_64-linux-gnu/opera/* opera.AppDir/
         mv usr/share/icons/hicolor/256x256/apps/opera.png opera.AppDir/
         mv usr/share/doc/ opera.AppDir/
+
+        #mv lib_extra opera.AppDir/
+        mv libffmpeg.so libffmpeg.so.old
+
+        cp ../libwidevinecdm.so opera.AppDir/
+        cp ../libffmpeg.so opera.AppDir/
+        pwd; ls -lah
 
         mv usr/share/applications/opera.desktop opera.AppDir/
         sed -i -e '/TargetEnvironment/d' opera.AppDir/*.desktop
