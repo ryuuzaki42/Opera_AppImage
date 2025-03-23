@@ -92,10 +92,10 @@ jobs:
         mv ../README.md opera.AppDir/
         
         #mv lib_extra opera.AppDir/
-        mv libffmpeg.so libffmpeg.so.old
+        #mv libffmpeg.so libffmpeg.so.old
 
-        cp ../libwidevinecdm.so .
-        cp ../libffmpeg.so .
+        cp ../libwidevinecdm.so opera.AppDir/
+        cp ../libffmpeg.so opera.AppDir/
         pwd; ls -lah
 
         mv usr/lib/x86_64-linux-gnu/opera/* opera.AppDir/
