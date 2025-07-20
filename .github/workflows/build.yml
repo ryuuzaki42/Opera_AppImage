@@ -90,10 +90,10 @@ jobs:
         mv usr/share/doc/ opera.AppDir/
 
         #mv lib_extra opera.AppDir/
-        mv opera.AppDir/libffmpeg.so opera.AppDir/libffmpeg.so.old
+        ##mv opera.AppDir/libffmpeg.so opera.AppDir/libffmpeg.so.old
 
         cp ../libwidevinecdm.so opera.AppDir/
-        #cp ../libffmpeg.so opera.AppDir/
+        ##cp ../libffmpeg.so opera.AppDir/
         pwd; ls -lah
 
         mv usr/share/applications/opera.desktop opera.AppDir/
