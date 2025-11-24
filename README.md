@@ -5,7 +5,7 @@ https://www.opera.com/
 
 ### Opera + nwjs-ffmpeg-prebuilt + WidevineCdm
     Opera: 123.0.5669.47
-    nwjs-ffmpeg-prebuilt: 0.103.0
+    nwjs-ffmpeg-prebuilt: 0.106.0
 
 ## Run
     chmod +x ./Opera-*_JB.AppImage
