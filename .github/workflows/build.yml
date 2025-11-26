@@ -85,7 +85,7 @@ jobs:
         mkdir opera.AppDir/
         mv ../README.md opera.AppDir/
 
-        mv usr/lib/x86_64-linux-gnu/opera/* opera.AppDir/
+        mv usr/lib/x86_64-linux-gnu/opera-stable/* opera.AppDir/
         mv usr/share/icons/hicolor/256x256/apps/opera.png opera.AppDir/
         mv usr/share/doc/ opera.AppDir/
 
