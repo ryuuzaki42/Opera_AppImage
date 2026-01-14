@@ -5,7 +5,7 @@ https://www.opera.com/
 
 ### Opera + nwjs-ffmpeg-prebuilt + WidevineCdm
     Opera: 126.0.5750.18
-    nwjs-ffmpeg-prebuilt: 0.107.0
+    nwjs-ffmpeg-prebuilt: 0.103.0 # Above 0.103.0 need GLIBC >= 2.34
 
 ## Run
     chmod +x ./Opera-*_JB.AppImage
