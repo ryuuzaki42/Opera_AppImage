@@ -1,10 +1,13 @@
 # Opera_AppImage
+
+Web browser
+
 https://www.opera.com/
 
 ## Repository: https://github.com/ryuuzaki42/Opera_AppImage
 
 ### Opera + nwjs-ffmpeg-prebuilt + WidevineCdm
-    Opera: 127.0.5778.76
+    Opera: 128.0.5807.25
     nwjs-ffmpeg-prebuilt: 0.103.0 # Above 0.103.0 need GLIBC >= 2.34
 
 ## Run
