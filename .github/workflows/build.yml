@@ -123,34 +123,13 @@ jobs:
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
 
-    # Snapshot Release
-    - name: get date
-      run: |
-        SNAPSHOT_TAG="$(date --utc +'%Y%m%d-%H%M%S')"
-        echo SNAPSHOT_TAG="${SNAPSHOT_TAG}" >> "${GITHUB_ENV}"
-
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
         name: "Opera V + nwjs-ffmpeg-prebuilt V + Widevinecdm in AppImage"
-        tag_name: "${{ env.SNAPSHOT_TAG}}"
-        prerelease: false
-        draft: false
-        generate_release_notes: true
+        #prerelease: false
+        #draft: false
+        #generate_release_notes: false
         make_latest: true
-        files: |
-          *.AppImage*
-        continue-on-error: false
-
-#    - uses: xresloader/upload-to-github-release@v1
-#      env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#          file: "Opera*.AppImage; Opera*.zsync; Opera*.md5"
-#          #delete_file: "random-name-*.txt;random-*.txt"
-#          release_id: ${{ steps.create_release.outputs.id }}
-#          #overwrite: true
-#          verbose: true
-#          #tags: true
-#          draft: false
-#          default_release_name: "Opera V + nwjs-ffmpeg-prebuilt V + Widevinecdm in AppImage"
+        files: *.AppImage* # Upload *.AppImage, *.AppImage.md5, *.AppImage.zsync
+        #continue-on-error: false
