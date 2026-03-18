@@ -123,7 +123,7 @@ jobs:
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
 
-    - uses: xresloader/upload-to-github-release@main
+    - uses: xresloader/upload-to-github-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
