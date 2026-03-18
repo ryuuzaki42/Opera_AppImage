@@ -131,5 +131,7 @@ jobs:
         #draft: false
         #generate_release_notes: false
         make_latest: true
-        files: *.AppImage* # Upload *.AppImage, *.AppImage.md5, *.AppImage.zsync
+        files: |
+          *.AppImage*
+        # Upload *.AppImage, *.AppImage.md5, *.AppImage.zsync
         #continue-on-error: false
