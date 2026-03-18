@@ -123,16 +123,15 @@ jobs:
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
 
-    - name: Create Release
-      uses: softprops/action-gh-release@v2
+    - uses: xresloader/upload-to-github-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: "Opera V + nwjs-ffmpeg-prebuilt V + Widevinecdm in AppImage"
-        tag_name: "${{ github.ref_name }}"
-        #prerelease: false
-        #draft: false
-        #generate_release_notes: false
-        make_latest: true
-        files: |
-          *.AppImage*
-        # Upload *.AppImage, *.AppImage.md5, *.AppImage.zsync
-        #continue-on-error: false
+          file: "Opera*.AppImage; Opera*.zsync; Opera*.md5"
+          #delete_file: "random-name-*.txt;random-*.txt"
+          release_id: ${{ steps.create_release.outputs.id }}
+          #overwrite: true
+          verbose: true
+          #tags: true
+          draft: false
+          default_release_name: "Opera V + nwjs-ffmpeg-prebuilt V + Widevinecdm in AppImage"
