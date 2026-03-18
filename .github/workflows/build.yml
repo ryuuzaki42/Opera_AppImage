@@ -128,7 +128,7 @@ jobs:
       run: |
         SNAPSHOT_TAG="$(date --utc +'%Y%m%d-%H%M%S')"
         echo SNAPSHOT_TAG="${SNAPSHOT_TAG}" >> "${GITHUB_ENV}"
-        continue-on-error: false
+
     - name: create snapshot
       uses: softprops/action-gh-release@v2
       with:
