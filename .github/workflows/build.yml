@@ -127,6 +127,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         name: "Opera V + nwjs-ffmpeg-prebuilt V + Widevinecdm in AppImage"
+        tag_name: "${{ env.SNAPSHOT_TAG}}"
         #prerelease: false
         #draft: false
         #generate_release_notes: false
