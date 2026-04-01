@@ -1,3 +1,4 @@
+
 # Opera_AppImage
 
 Web browser
@@ -8,7 +9,7 @@ https://www.opera.com/
 
 ### Opera + nwjs-ffmpeg-prebuilt + WidevineCdm
     Opera: 129.0.5823.28
-    nwjs-ffmpeg-prebuilt: 0.110.1 #0.103.0 # Above 0.103.0 need GLIBC >= 2.34
+    nwjs-ffmpeg-prebuilt: 0.103.0 # Above 0.103.0 need GLIBC >= 2.34
 
 ## Options
 ```
