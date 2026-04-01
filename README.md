@@ -10,17 +10,17 @@ https://www.opera.com/
     Opera: 129.0.5823.15
     nwjs-ffmpeg-prebuilt: 0.103.0 # Above 0.103.0 need GLIBC >= 2.34
 
-## Run
-    chmod +x ./Opera-*_JB.AppImage
-
-    ./Opera-*.AppImage
-
 ## Options
-    ./Opera-*_JB.AppImage --incognito
+```
+# Base
+    ./Opera-*_JB-x86_64.AppImage
 
-    # --lang=LANGUAGE
-    ./Opera-*_JB.AppImage --lang=pt-BR
+# Private --incognito
+    ./Opera-*_JB-x86_64.AppImage --incognito
 
+# Define language --lang=LANGUAGE
+    ./Opera-*_JB-x86_64.AppImage --lang=pt-BR
+```
 ---
 Based on: https://github.com/ivan-hc/Opera-appimage
 
