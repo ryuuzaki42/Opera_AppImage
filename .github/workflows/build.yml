@@ -26,7 +26,10 @@ jobs:
         cd tmp/
 
         # Error: opera: undefined symbol: av_dynamic_hdr_smpte2094_app5_to_t35
-        wget -q "https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$nwjs_version/$nwjs_version-linux-x64.zip"
+        #wget -q "https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/$nwjs_version/$nwjs_version-linux-x64.zip"
+        # Issue: https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/issues/119
+        # New repository
+        wget -q "https://github.com/Ld-Hagen/nwjs-ffmpeg-prebuilt/releases/download/nwjs-ffmpeg-$nwjs_version/$nwjs_version-linux-x64.zip"
         unzip "$nwjs_version-linux-x64.zip"
         pwd; ls -lah
 
