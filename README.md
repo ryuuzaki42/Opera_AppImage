@@ -1,9 +1,6 @@
 
 # Opera_AppImage
-
-Web browser
-
-https://www.opera.com/
+Web browser - https://www.opera.com/
 
 ## Repository: https://github.com/ryuuzaki42/Opera_AppImage
 
@@ -27,7 +24,8 @@ Based on: https://github.com/ivan-hc/Opera-appimage
 
 ---
 ### nwjs-ffmpeg-prebuilt
-https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases
+- Old - New versions need GLIBC >= 2.34 - https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases
+- New - Not need GLIBC >= 2.34 - https://github.com/Ld-Hagen/nwjs-ffmpeg-prebuilt/releases
 
 ---
 ### Widevinecdm
