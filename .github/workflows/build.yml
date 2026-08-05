@@ -42,8 +42,9 @@ jobs:
 
         # Change current to fixed version
         # Error: opera: undefined symbol: av_dynamic_hdr_smpte2094_app5_to_t35
+        # Check google-chrome version: https://aur.archlinux.org/cgit/aur.git/log/?h=google-chrome
         #wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        wget -q https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_150.0.7871.186-1_amd64.deb
+        wget -q https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_149.0.7827.196-1_amd64.deb
         pwd; ls -lah
 
         #ar xv google-chrome-stable_current_amd64.deb
@@ -138,4 +139,4 @@ jobs:
           #overwrite: true
           verbose: true
           draft: false
-          default_release_name: "Opera V + nwjs-ffmpeg-prebuilt V + Widevinecdm in AppImage"
+          default_release_name: "Opera V + nwjs-ffmpeg-prebuilt V + Widevinecdm V in AppImage"
