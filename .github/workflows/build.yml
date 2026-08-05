@@ -43,7 +43,7 @@ jobs:
         # Change current to fixed version
         # Error: opera: undefined symbol: av_dynamic_hdr_smpte2094_app5_to_t35
         #wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_151.0.7922.71-1_amd64.deb
+        wget -q https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_150.0.7871.186-1_amd64.deb
         pwd; ls -lah
 
         #ar xv google-chrome-stable_current_amd64.deb
