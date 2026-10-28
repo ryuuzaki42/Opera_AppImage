@@ -5,8 +5,8 @@ Web browser - https://www.opera.com/
 ## Repository: https://github.com/ryuuzaki42/Opera_AppImage
 
 ### Opera + nwjs-ffmpeg-prebuilt + WidevineCdm
-    Opera: 138.0.6044.24
-    nwjs-ffmpeg-prebuilt: 0.119.0
+    Opera: 139.0.6053.15
+    nwjs-ffmpeg-prebuilt: 0.119.2
 
 ## Options
 ```
